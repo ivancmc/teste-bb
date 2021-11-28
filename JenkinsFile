@@ -1,0 +1,36 @@
+node {
+
+    withMaven(maven:'maven') {
+
+        stage('Checkout') {
+            git url: 'https://github.com/ivancmc/teste-bb.git', branch: 'main'
+        }
+
+        stage('Build Eureka') {
+            dir ('Servidor-Eureka') {
+                bat 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage('Build Cliente-Conta') {
+            dir ('BlueBank') {
+                bat 'mvn clean install -DskipTests'
+            }
+            dir ('Transacoes') {
+                bat 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage('Build Transações') {
+            dir ('Transacoes') {
+                bat 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage ('Run') {
+            bat 'docker-compose up --build'
+        }  
+
+    }
+
+}
