@@ -28,7 +28,7 @@ node {
         }
 
         stage ('Run') {
-            sh 'docker-compose up -d --build --force-recreate'
+            sh 'docker-compose up -d --build'
         }  
 
     }
