@@ -8,27 +8,27 @@ node {
 
         stage('Build Eureka') {
             dir ('Servidor-Eureka') {
-                bat 'mvn clean install -DskipTests'
+                sh 'mvn clean install -DskipTests'
             }
         }
 
         stage('Build Cliente-Conta') {
             dir ('BlueBank') {
-                bat 'mvn clean install -DskipTests'
+                sh 'mvn clean install -DskipTests'
             }
             dir ('Transacoes') {
-                bat 'mvn clean install -DskipTests'
+                sh 'mvn clean install -DskipTests'
             }
         }
 
         stage('Build Transações') {
             dir ('Transacoes') {
-                bat 'mvn clean install -DskipTests'
+                sh 'mvn clean install -DskipTests'
             }
         }
 
         stage ('Run') {
-            bat 'docker-compose up -d --build --force-recreate'
+            sh 'docker-compose up -d --build --force-recreate'
         }  
 
     }
