@@ -16,9 +16,6 @@ node {
             dir ('BlueBank') {
                 sh 'mvn clean install -DskipTests'
             }
-            dir ('Transacoes') {
-                sh 'mvn clean install -DskipTests'
-            }
         }
 
         stage('Build Transações') {
